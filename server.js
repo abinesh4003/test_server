@@ -11,7 +11,7 @@ const localURI = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGOD
 async function connectDB() {
     try{
         await mongoose.connect(localURI);
-        console.log('connected to database in ', localURI);
+        console.log('connected to database ');
     }
     catch(err){
         console.log(err)
