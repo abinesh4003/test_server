@@ -1,7 +1,7 @@
 
 const users = require('./model');
-var exports = {};
-exports.getAllUsers=async (req,res)=>{
+
+module.exports.getAllUsers=async (req,res)=>{
     try{
         const allUsers=await users.find();
         res.status(200).json(allUsers);
@@ -11,7 +11,7 @@ exports.getAllUsers=async (req,res)=>{
     }
 }
 
-exports.getUserById=async (req,res)=>{
+module.exports.getUserById=async (req,res)=>{
     const id=req.params.id;
     try{
         const user= await users.findById(id);
@@ -25,7 +25,7 @@ exports.getUserById=async (req,res)=>{
     }
 }
 
-exports.createUser=async (req,res)=>{
+module.exports.createUser=async (req,res)=>{
     const {name,email,age}=req.body;
     try{
       const newUser=await users.create({name,email,age});
@@ -36,7 +36,7 @@ exports.createUser=async (req,res)=>{
     }
 }
 
-exports.updateUser=async (req,res)=>{
+module.exports.updateUser=async (req,res)=>{
     try{
         const id=req.params.id;
         const {name,email,age}=req.body;
@@ -51,7 +51,7 @@ exports.updateUser=async (req,res)=>{
     }
 }
 
-exports.deleteUser=async (req,res)=>{
+module.exports.deleteUser=async (req,res)=>{
     try{
         const id=req.params.id;
         const deletedUser=await users.findByIdAndDelete(id);
@@ -64,4 +64,3 @@ exports.deleteUser=async (req,res)=>{
         res.status(500).json({error: err.message});
     }
 }
-module.exports=exports;
